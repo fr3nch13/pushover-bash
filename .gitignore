@@ -1,2 +1,10 @@
 
+# In case you have a local config file.
 /pushover-config
+
+# PHP's Composer stuff
+/vendor
+/composer.lock
+
+# Node/Npm stuff
+/package-lock.json
