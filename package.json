@@ -1,0 +1,44 @@
+{
+  "name": "@fr3nch13/pushover-bash",
+  "version": "1.0.0",
+  "description": "A Bash shell script to send pushover notifications.",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/fr3nch13/pushover-bash#readme",
+  "keywords": [
+    "pushover",
+    "notifications",
+    "bash"
+  ],
+  "author": {
+    "name" : "akusei",
+    "url" : "https://github.com/akusei"
+  },
+  "contributers": [
+    {
+      "name" : "Brian French",
+      "url" : "https://github.com/fr3nch13"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/fr3nch13/pushover-bash/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fr3nch13/pushover-bash.git"
+  },
+  "main": "pushover.js",
+  "scripts": {
+    "test": "sh ./pushover.sh -m Node Test"
+  },
+  "bin": {
+    "pushover": "./pushover.sh"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14.21.3"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
