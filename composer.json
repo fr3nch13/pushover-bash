@@ -23,6 +23,7 @@
 	],
     "scripts": {
         "pushover": "./pushover.sh",
+        "pushover-validate": "@pushover -x -m Composer Validate",
         "pushover-test": "@pushover -p -2 -T Composer Test -m Composer Test"
     }
 }

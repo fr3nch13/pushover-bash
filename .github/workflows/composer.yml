@@ -1,0 +1,49 @@
+name: CI PHP Composer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+      - '*'
+
+permissions:
+  contents: read
+
+# TODO: Mock the actual call to pushover, instead of actually doing it.
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # the Node.js versions to build on
+        php: ['7.4', '8.0', '8.1', '8.2', 'latest']
+    name: Node - ${{ matrix.php }}
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+
+    - name: Composer install
+      run: composer install
+
+    - name: Setup Config file
+      run: |
+        cp ./.github/assets/pushover-config-test ./pushover-config
+        sed -i "s#__PUSHOVER_USER__#${{ secrets.PUSHOVER_USER }}#g" ./pushover-config
+        sed -i "s#__PUSHOVER_APP__#${{ secrets.PUSHOVER_APP }}#g" ./pushover-config
+        sed -i "s#__PUSHOVER_DEVICE__#${{ secrets.PUSHOVER_DEVICE }}#g" ./pushover-config
+
+    - name: Run Validate via Composer
+      run:  composer run-script pushover-validate
+
+    - name: Run script via Composer
+      run: composer run-script pushover-test
+
+    - name: Run script with Args via Composer
+      run: composer run-script pushover -- -p -2 -m Composer Test Args ${{ matrix.php }}
