@@ -40,4 +40,6 @@ jobs:
         sed -i "s#__PUSHOVER_DEVICE__#${{ secrets.PUSHOVER_DEVICE }}#g" ./pushover-config
       
     - name: Run script via NPM
-      run: npm test
+      run: |
+        npm test
+        npm run pushover -- -p -2 -m Node Test Args ${{ matrix.node }}

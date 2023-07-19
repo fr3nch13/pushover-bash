@@ -28,7 +28,8 @@
   },
   "main": "pushover.js",
   "scripts": {
-    "test": "./pushover.sh -T Node Test -m Node Test"
+    "test": "./pushover.sh -T Node Test -m Node Test -p -2",
+    "pushover": "./pushover.sh"
   },
   "bin": {
     "pushover": "./pushover.sh"
