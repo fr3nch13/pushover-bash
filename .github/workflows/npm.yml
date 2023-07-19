@@ -52,4 +52,4 @@ jobs:
       run: npm run pushover -- -p -2 -m Node Test Args ${{ matrix.node }}
 
     - name: Run via the bin setting
-      run: npm pushover-bash -- -p -2 -m Node Test Args ${{ matrix.node }}
+      run: npm exec pushover-bash -- -p -2 -m Node Test Args ${{ matrix.node }}
