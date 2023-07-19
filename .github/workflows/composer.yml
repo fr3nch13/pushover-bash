@@ -19,7 +19,7 @@ jobs:
       matrix:
         # the Node.js versions to build on
         php: ['7.4', '8.0', '8.1', '8.2', 'latest']
-    name: Node - ${{ matrix.php }}
+    name: PHP - ${{ matrix.php }}
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
