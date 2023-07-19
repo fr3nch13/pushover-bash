@@ -1,13 +1,19 @@
 {
     "name": "akusei/pushover-bash",
     "description": "Pushover Bash Script",
-    "homepage": "https://github.com/akusei/pushover-bash",
+    "keywords": ["bash", "pushover", "notifications"],
+    "homepage": "https://github.com/fr3nch13/pushover-bash",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "akusei",
-            "role": "Developer",
+            "role": "Original Creater",
             "homepage": "https://github.com/akusei"
+        },
+        {
+            "name": "Brian French",
+            "role": "Developer",
+            "homepage": "https://github.com/fr3nch13"
         }
     ],
     "minimum-stability": "dev",
