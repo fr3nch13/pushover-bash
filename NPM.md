@@ -33,12 +33,10 @@ In addition to the default configuration file locations, you can also create the
 
 You can call it through `npm` like so:
 
-**I'm sure there's a better way, similar to composer, but I don't know it.**
-
 ```bash
-$npm explore @fr3nch13/pushover-bash [ -- <command>]
+$npm exec pushover-bash -- [script args]
 
 #examples
-$npm explore @fr3nch13/pushover-bash -- ./pushover.sh -m Message
+$npm exec pushover-bash -- -m Message
 ```
 
