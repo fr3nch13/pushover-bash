@@ -20,5 +20,9 @@
     "prefer-stable": true,
     "bin": [
 		"pushover.sh"
-	]
+	],
+    "scripts": {
+        "pushover": "./pushover.sh",
+        "pushover-test": "@pushover -p -2 -T Composer Test -m Composer Test"
+    }
 }

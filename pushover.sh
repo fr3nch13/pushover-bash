@@ -4,14 +4,16 @@ set -o errexit
 set -o nounset
 
 readonly API_URL="https://api.pushover.net/1/messages.json"
+readonly API_URL_VALIDATE="https://api.pushover.net/1/users/validate.json"
 readonly CONFIG_FILE="pushover-config"
 readonly DEFAULT_CONFIG="/etc/pushover/${CONFIG_FILE}"
 readonly USER_OVERRIDE=~/.pushover/${CONFIG_FILE}
-readonly COMPOSER_ROOT_PATH=`realpath .`
-readonly USER_OVERRIDE_COMPOSER=${COMPOSER_ROOT_PATH}/${CONFIG_FILE}
+readonly PROJECT_ROOT_PATH=`realpath .`
+readonly USER_OVERRIDE_PROJECT=${PROJECT_ROOT_PATH}/${CONFIG_FILE}
 readonly EXPIRE_DEFAULT=180
 readonly RETRY_DEFAULT=30
 HIDE_REPLY=1
+VALIDATE=0
 debug=0
 
 showHelp()
@@ -65,8 +67,9 @@ showHelp()
         echo "                                echo - Pushover Echo (long)"
         echo "                                updown - Up Down (long)"
         echo "                                none - None (silent)"
+        echo "  -x,  --validate            If set, it will only validate the account"
         echo "  -v,  --verbose             Return API execution reply to stdout"
-        echo "  -d,  --debug               Print out debugging information"
+        echo "  -D,  --debug               Print out debugging information"
         echo "                                Warning, this will output your user key and token to stdout"
         echo
         echo "EXAMPLES:"
@@ -102,8 +105,8 @@ fi
 if [ -f ${USER_OVERRIDE} ]; then
   source ${USER_OVERRIDE}
 fi
-if [ -f ${USER_OVERRIDE_COMPOSER} ]; then
-  source ${USER_OVERRIDE_COMPOSER}
+if [ -f ${USER_OVERRIDE_PROJECT} ]; then
+  source ${USER_OVERRIDE_PROJECT}
 fi
 
 declare -A myargs
@@ -181,6 +184,11 @@ do
         HIDE_REPLY=0
         ;;
 
+      -x|--validate)
+        varname=''
+        VALIDATE=1
+        ;;
+
       -h|--help)
         showHelp
         exit
@@ -196,6 +204,9 @@ do
     fi
     if [ ${1:0:1} != '-' ]; then
       myargs[${varname}]="${myargs[${varname}]} ${1}"
+    # priority
+    elif [ ${varname} == 'priority' ]; then
+      myargs[${varname}]=${1}
     fi
   fi
   shift
@@ -224,25 +235,25 @@ if [ -z "${api_token:-}" ]; then
   echo "-t|--token must be set"
   exit 1
 elif [ ${debug} -eq 1 ]; then
- echo "DEBUG: api_token:${api_token}"
+  echo "DEBUG: api_token:${api_token}"
 fi
 
 if [ -z "${user_key:-}" ]; then
   echo "-u|--user must be set"
   exit 1
 elif [ ${debug} -eq 1 ]; then
- echo "DEBUG: user_key:${user_key}"
+  echo "DEBUG: user_key:${user_key}"
 fi
 
 if [ -z "${message:-}" ]; then
   echo "-m|--message must be set"
   exit 1
 elif [ ${debug} -eq 1 ]; then
- echo "DEBUG: message:${message}"
+  echo "DEBUG: message:${message}"
 fi
 
 if [ ${debug} -eq 1 ]; then
- echo "DEBUG: title:${title}"
+  echo "DEBUG: title:${title:-}"
 fi
 
 if [ ! -z "${html:-}" ] && [ ! -z "${monospace:-}" ]; then
@@ -255,9 +266,18 @@ if [ ! -z "${attachment:-}" ] && [ ! -f "${attachment}" ]; then
   exit 1
 fi
 
+URL=${API_URL}
+if [ ${VALIDATE} -eq 1 ]; then
+  URL=${API_URL_VALIDATE}
+fi
+if [ ${debug} -eq 1 ]; then
+    echo "DEBUG: VALIDATE=${VALIDATE}"
+    echo "DEBUG: URL=${URL}"
+  fi
+
 if [ -z "${attachment:-}" ]; then
   if [ ${debug} -eq 1 ]; then
-   echo "DEBUG: using attachment"
+    echo "DEBUG: no attachment"
   fi
   json="{\"token\":\"${api_token}\",\"user\":\"${user_key}\",\"message\":\"${message}\""
   if [ "${device:-}" ]; then json="${json},\"device\":\"${device}\""; fi
@@ -275,10 +295,10 @@ if [ -z "${attachment:-}" ]; then
   response=$(curl -s \
     -H "Content-Type: application/json" \
     -d "${json}" \
-    "${API_URL}" 2>&1)
+    "${URL}" 2>&1)
 else
   if [ ${debug} -eq 1 ]; then
-   echo "DEBUG: no attachment"
+    echo "DEBUG: using attachment"
   fi
   response=$(curl -s \
     --form-string "token=${api_token}" \
@@ -291,7 +311,7 @@ else
     ${sound:+ --form-string "sound=${sound}"} \
     ${device:+ --form-string "device=${device}"} \
     ${title:+ --form-string "title=${title}"} \
-    "${API_URL}" 2>&1)
+    "${URL}" 2>&1)
 fi
 
 if [ ${HIDE_REPLY} -eq 0 ]; then
