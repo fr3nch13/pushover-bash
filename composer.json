@@ -1,5 +1,5 @@
 {
-    "name": "akusei/pushover-bash",
+    "name": "fr3nch13/pushover-bash",
     "description": "Pushover Bash Script",
     "keywords": ["bash", "pushover", "notifications"],
     "homepage": "https://github.com/fr3nch13/pushover-bash",
@@ -23,6 +23,7 @@
 	],
     "scripts": {
         "pushover": "./pushover.sh",
+        "pushover-validate": "@pushover -x -m Composer Validate",
         "pushover-test": "@pushover -p -2 -T Composer Test -m Composer Test"
     }
 }

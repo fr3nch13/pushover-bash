@@ -59,5 +59,8 @@ jobs:
         sed -i "s#__PUSHOVER_APP__#${{ secrets.PUSHOVER_APP }}#g" ./pushover-config
         sed -i "s#__PUSHOVER_DEVICE__#${{ secrets.PUSHOVER_DEVICE }}#g" ./pushover-config
     
+    - name: Validate with config
+      run: ./pushover.sh -v -x -m Github Action Config
+    
     - name: Run script from config
       run: ./pushover.sh -v -p -2 -m Github Action Config

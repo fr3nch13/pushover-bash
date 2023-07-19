@@ -28,17 +28,18 @@
   },
   "main": "pushover.js",
   "scripts": {
-    "test": "./pushover.sh -T Node Test -m Node Test -p -2",
-    "pushover": "./pushover.sh"
+    "pushover": "./pushover.sh",
+    "pushover-validate": "./pushover.sh -x -m Node Validate",
+    "pushover-test": "./pushover.sh -p -2 -T Node Test -m Node Test"
   },
   "bin": {
-    "pushover": "./pushover.sh"
+    "pushover-bash": "./pushover.sh"
   },
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=14.21.3"
+    "node": ">=18.17.0"
   },
   "dependencies": {},
   "devDependencies": {}

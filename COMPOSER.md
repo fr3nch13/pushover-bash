@@ -2,9 +2,27 @@
 
 To use the pushover-bash script with composer, there are a few changes/additions to the instructions in the [README](README.md).
 
+## Installation
+
+To install it via composer directly, run:
+
+```bash
+composer require --dev fr3nch13/pushover-bash
+```
+
+Or add it to your composer.json, then run composer update
+
+```json
+{
+    "require-dev": {
+        "fr3nch13/pushover-bash": "dev-main",
+    }
+}
+```
+
 ## Configuration
 
-In addition to the default configuration file locations, you can also create the configuration file at the same location as your `vendor` folder. The script will traverse up 3 folders to look for it.
+In addition to the default configuration file locations, you can also create the configuration file at the same location as your `vendor` folder.
 
 **Be sure to add it to your `.gitignore` file.
 ```.gitignore

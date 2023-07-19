@@ -47,6 +47,7 @@ usage: pushover.sh <apikey> <userkey> <message> [options]
                                 echo - Pushover Echo (long)
                                 updown - Up Down (long)
                                 none - None (silent)
+  -x,  --validate            If set, it will only validate the account
   -v,  --verbose             Return API execution reply to stdout
   -d,  --debug               Print out debugging information
                                 WARNING, this will output your user key and token to stdout
@@ -75,7 +76,7 @@ sound=
 
 **NOTE:** If you have a value defined in /etc/default/ and also have overrides in $HOME/.pushover/ all empty options in $HOME/.pushover/ must not exist in the file. For example, I have the following configuration in /etc/default/
 
-```
+```bash
 api_token=my-app-api-token
 user_key=my-user-key
 device=
@@ -93,7 +94,8 @@ title="title for specific user"
 ```
 
 ## Support
-For PHP Composer based projects, see [COMPOSER.md](COMPOSER.md)
+- For PHP Composer based projects, see [COMPOSER.md](COMPOSER.md)
+- For Node.js/NPM based projects, see [NPM.md](NPM.md)
 
 ## Examples
 Send a simple "This is a test" message to all devices using the stored configuration in either **/etc/default/pushover-config**, **$HOME/.pushover/pushover-config**, or **./pushover-config**
