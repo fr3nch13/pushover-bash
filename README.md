@@ -1,6 +1,8 @@
 # Pushover Bash Script
 A Bash shell script to send pushover notifications. A [Pushover account](https://pushover.net/) is required to use this script.
 
+Based on the original [Pushover Bash](https://github.com/akusei/pushover-bash) by [akusei](https://github.com/akusei).
+
 ## Usage
 
 ```
