@@ -38,8 +38,7 @@ jobs:
 
     - name: Run script with Args
       run: |
-        echo "disabled"
-        #./pushover.sh -v -t ${{ secrets.PUSHOVER_APP }} -u ${{ secrets.PUSHOVER_USER }} -d ${{ secrets.PUSHOVER_DEVICE }} -T Github Action Args -m Github Action Args
+        ./pushover.sh -v -t ${{ secrets.PUSHOVER_APP }} -u ${{ secrets.PUSHOVER_USER }} -d ${{ secrets.PUSHOVER_DEVICE }} -T Github Action Args -m Github Action Args
 
   run_config:
     runs-on: ubuntu-20.04
@@ -52,9 +51,8 @@ jobs:
     
     - name: Run script from config
       run: |
-        cp ./pushover-config-test ./pushover-config
+        cp ./.github/assets/pushover-config-test ./pushover-config
         sed -i "s#__PUSHOVER_USER__#${{ secrets.PUSHOVER_USER }}#g" ./pushover-config
         sed -i "s#__PUSHOVER_APP__#${{ secrets.PUSHOVER_APP }}#g" ./pushover-config
         sed -i "s#__PUSHOVER_DEVICE__#${{ secrets.PUSHOVER_DEVICE }}#g" ./pushover-config
-        echo "disabled"
-        #./pushover.sh -v -m Github Action Config
+        ./pushover.sh -v -m Github Action Config
