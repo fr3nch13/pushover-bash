@@ -1,4 +1,4 @@
-name: CI PHP Composer
+name: CI Composer
 
 on:
   push:
