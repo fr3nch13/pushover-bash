@@ -1,4 +1,4 @@
-name: CI
+name: CI Bash
 
 on:
   push:
@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   run_fail:
+    name: Bash - Expect fail
     runs-on: ubuntu-20.04
     steps:
     - name: Git checkout
@@ -28,6 +29,7 @@ jobs:
         ./pushover.sh -v -t badtoken -u badkey -d baddevice -T Github Action Fail -m Github Action Fail || (( $? == 2 )) && exit 0 || exit $?
 
   run_cli:
+    name: Bash - Run with Arguments
     runs-on: ubuntu-20.04
     steps:
     - name: Git checkout
@@ -41,6 +43,7 @@ jobs:
         ./pushover.sh -v -t ${{ secrets.PUSHOVER_APP }} -u ${{ secrets.PUSHOVER_USER }} -d ${{ secrets.PUSHOVER_DEVICE }} -T Github Action Args -m Github Action Args
 
   run_config:
+    name: Bash - Run with Config File
     runs-on: ubuntu-20.04
     steps:
     - name: Git checkout
