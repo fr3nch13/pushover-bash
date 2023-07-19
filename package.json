@@ -10,13 +10,13 @@
     "bash"
   ],
   "author": {
-    "name" : "akusei",
-    "url" : "https://github.com/akusei"
+    "name": "akusei",
+    "url": "https://github.com/akusei"
   },
   "contributers": [
     {
-      "name" : "Brian French",
-      "url" : "https://github.com/fr3nch13"
+      "name": "Brian French",
+      "url": "https://github.com/fr3nch13"
     }
   ],
   "bugs": {
@@ -33,7 +33,7 @@
     "pushover-test": "./pushover.sh -p -2 -T Node Test -m Node Test"
   },
   "bin": {
-    "pushover-bash": "./pushover.sh"
+    "pushover-bash": "pushover.sh"
   },
   "publishConfig": {
     "access": "public"
