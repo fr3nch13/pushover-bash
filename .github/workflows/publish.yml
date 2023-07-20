@@ -49,8 +49,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+      - name: Initialise the NPM config
+        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+      - name: Initialize Git user
+        run: |
+          git config --global user.email "fr3nch13@gmail.com"
+          git config --global user.name "Release Workflow"
+      - name: Log git status
+        run: git status
+      - name: Push to protected branch
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
+          branch: main
+          unprotect_reviews: true
+      - name: Run release
+        run: |
           npm whoami
           npm install
           # See ROOt/.release-it.sh
