@@ -7,11 +7,12 @@
       "commit": true,
       "tag": true,
       "requireCommits": false,
-      "requireCleanWorkingDir": false
+      "requireCleanWorkingDir": true
     },
     "github": {
       "release": true,
-      "draft": true
+      "draft": true,
+      "autoGenerate": true
     },
     "hooks": {
       "after:release": "echo Successfully created a release draft ${version} for ${repo.repository}. Please add release notes when necessary and publish it!"
