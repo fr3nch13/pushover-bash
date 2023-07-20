@@ -37,8 +37,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Git Checkout
         uses: actions/checkout@v3
@@ -54,8 +52,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: |
-          npm i
+          npm install
           # See ROOt/.release-it.sh
           # That defines how the release command behaves.
           npm run release -- --ci --verbose ${{ github.event.inputs.version }}${{ github.event.inputs.dry-run == 'true' && ' --dry-run' || '' }}
