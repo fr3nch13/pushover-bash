@@ -1,0 +1,23 @@
+{
+    "git": {
+      "commitMessage": "Creating ${version} release",
+      "tagAnnotation": "Release ${version}",
+      "tagName": "${version}",
+      "push": true,
+      "commit": true,
+      "tag": true,
+      "requireCommits": false,
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": true,
+      "draft": true
+    },
+    "hooks": {
+      "after:bump": "git add ./package-lock.json",
+      "after:release": "echo Successfully created a release draft ${version} for ${repo.repository}. Please add release notes when necessary and publish it!"
+    },
+    "npm": {
+      "publishArgs": ["--provenance"]
+    }
+  }

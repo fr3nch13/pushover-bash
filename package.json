@@ -28,6 +28,7 @@
   },
   "main": "pushover.js",
   "scripts": {
+    "release": "release-it",
     "pushover": "./pushover.sh",
     "pushover-validate": "./pushover.sh -x -m Node Validate",
     "pushover-test": "./pushover.sh -p -2 -T Node Test -m Node Test"
@@ -41,6 +42,7 @@
   "engines": {
     "node": ">=18.17.0"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "release-it": "^16.1.2"
+  }
 }
