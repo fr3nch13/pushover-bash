@@ -50,6 +50,7 @@ jobs:
           node-version: '18.x'
       - run: |
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          npm whoami
           npm install
           # See ROOt/.release-it.sh
           # That defines how the release command behaves.
