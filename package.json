@@ -1,6 +1,6 @@
 {
   "name": "@fr3nch13/pushover-bash",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Bash shell script to send pushover notifications.",
   "license": "GPL-3.0",
   "homepage": "https://github.com/fr3nch13/pushover-bash#readme",
