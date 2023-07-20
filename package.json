@@ -40,7 +40,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=18"
   },
   "devDependencies": {
     "release-it": "^16.1.2"
