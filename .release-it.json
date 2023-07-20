@@ -18,6 +18,7 @@
       "after:release": "echo Successfully created a release draft ${version} for ${repo.repository}. Please add release notes when necessary and publish it!"
     },
     "npm": {
-      "publishArgs": ["--provenance"]
+      "publishArgs": ["--provenance"],
+      "skipChecks": true
     }
   }

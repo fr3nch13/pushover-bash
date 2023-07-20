@@ -9,3 +9,4 @@
 # Node/Npm stuff
 /package-lock.json
 /node_modules
+/.npmrc
