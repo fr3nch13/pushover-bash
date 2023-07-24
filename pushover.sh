@@ -206,7 +206,8 @@ do
       myargs[${varname}]="${myargs[${varname}]} ${1}"
     # priority
     elif [ ${varname} == 'priority' ]; then
-      myargs[${varname}]=${1}
+      myargs[${varname}]=$(printf -v int '%d\n' "${1}")
+      
     fi
   fi
   shift
