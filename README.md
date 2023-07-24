@@ -1,3 +1,7 @@
+[![CI Bash](https://github.com/fr3nch13/pushover-bash/actions/workflows/bash.yml/badge.svg)](https://github.com/fr3nch13/pushover-bash/actions/workflows/bash.yml)
+[![CI Composer](https://github.com/fr3nch13/pushover-bash/actions/workflows/composer.yml/badge.svg)](https://github.com/fr3nch13/pushover-bash/actions/workflows/composer.yml)
+[![CI NPM](https://github.com/fr3nch13/pushover-bash/actions/workflows/npm.yml/badge.svg)](https://github.com/fr3nch13/pushover-bash/actions/workflows/npm.yml)
+
 # Pushover Bash Script
 A Bash shell script to send pushover notifications. A [Pushover account](https://pushover.net/) is required to use this script.
 
@@ -96,6 +100,7 @@ title="title for specific user"
 ## Support
 - For PHP Composer based projects, see [COMPOSER.md](COMPOSER.md)
 - For Node.js/NPM based projects, see [NPM.md](NPM.md)
+- Currently working on Python's PyPi
 
 ## Examples
 Send a simple "This is a test" message to all devices using the stored configuration in either **/etc/default/pushover-config**, **$HOME/.pushover/pushover-config**, or **./pushover-config**

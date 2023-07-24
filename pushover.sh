@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -o errexit
 set -o nounset
 
 readonly API_URL="https://api.pushover.net/1/messages.json"
@@ -203,10 +202,17 @@ do
       myargs[${varname}]=''
     fi
     if [ ${1:0:1} != '-' ]; then
-      myargs[${varname}]="${myargs[${varname}]} ${1}"
-    # priority
-    elif [ ${varname} == 'priority' ]; then
-      myargs[${varname}]=${1}
+      # priority
+      if [ ${varname} == 'priority' ]; then
+        pval=`printf -v int '%d\n' "${1}" 2>/dev/null`
+        if [ $? -ne 0 ]; then
+          echo "Priority must be an integer. You gave: ${1}"
+          exit 4
+        fi
+        myargs[${varname}]=${pval}
+      else
+        myargs[${varname}]="${myargs[${varname}]} ${1}"
+      fi  
     fi
   fi
   shift
@@ -320,7 +326,7 @@ fi
 
 # the resonse from pushover is a failure when the status is 0
 if echo ${response} | grep -q '"status":0,'; then
-  exit 2
+  exit 3
 fi
 
 exit 0
