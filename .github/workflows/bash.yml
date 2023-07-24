@@ -30,7 +30,7 @@ jobs:
 
   run_cli:
     name: Bash - Run with Arguments
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
 
   run_config:
     name: Bash - Run with Config File
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
