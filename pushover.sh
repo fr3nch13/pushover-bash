@@ -203,12 +203,12 @@ do
       myargs[${varname}]=''
     fi
     if [ ${1:0:1} != '-' ]; then
-      myargs[${varname}]="${myargs[${varname}]} ${1}"
-    # priority
-    elif [ ${varname} == 'priority' ]; then
-      echo ${1}
-      myargs[${varname}]=$(printf -v int '%d\n' "${1}")
-      
+      # priority
+      if [ ${varname} == 'priority' ]; then
+        myargs[${varname}]=$(printf -v int '%d\n' "${1}")
+      else
+        myargs[${varname}]="${myargs[${varname}]} ${1}"
+      fi  
     fi
   fi
   shift
