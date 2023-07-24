@@ -62,5 +62,8 @@ jobs:
     - name: Validate with config
       run: ./pushover.sh -v -x -m Github Action Config
     
-    - name: Run script from config
+    - name: Run script from config, priority 2
       run: ./pushover.sh -v -m Github Action Config -p -2
+    
+    - name: Run script from config, priority 1
+      run: ./pushover.sh -v -m Github Action Config -p -1
