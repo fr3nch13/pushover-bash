@@ -15,7 +15,7 @@ permissions:
 jobs:
   run_fail:
     name: Bash - Expect fail
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Git checkout
       uses: actions/checkout@v3

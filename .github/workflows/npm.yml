@@ -14,10 +14,10 @@ permissions:
 
 jobs:
   run_test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        # the Node.js versions to build on
+        # the Node.js versions to test on
         node: [18, 20]
     name: Node - ${{ matrix.node }}
     steps:
