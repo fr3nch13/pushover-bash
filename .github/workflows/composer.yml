@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        fail-fast: false
         # the PHP versions to test on
         php: ['7.4', '8.0', '8.1', '8.2', 'latest']
     name: PHP - ${{ matrix.php }}
