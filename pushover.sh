@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -o errexit
 set -o nounset
 
 readonly API_URL="https://api.pushover.net/1/messages.json"
