@@ -206,7 +206,7 @@ do
       # priority
       if [ ${varname} == 'priority' ]; then
         pval=$(printf -v int '%d\n' "${1}")
-        if [ $? -ne 0]; then
+        if [ $? -ne 0 ]; then
           echo "Priority must be an integer. You gave: ${1}"
           exit 4
         fi
