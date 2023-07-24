@@ -63,10 +63,12 @@ jobs:
           token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
           branch: main
           unprotect_reviews: true
+      # This will bump the package.json, then create a draft release on github.
+      # The draft release will update packagist (composer) when it's published.
       - name: Run release
         run: |
           npm whoami
           npm install
-          # See ROOt/.release-it.sh
+          # See ROOT/.release-it.sh
           # That defines how the release command behaves.
           npm run release -- --ci --verbose ${{ github.event.inputs.version }}${{ github.event.inputs.dry-run == 'true' && ' --dry-run' || '' }}
