@@ -1,0 +1,25 @@
+# https://packaging.python.org/en/latest/flow/
+# Copied from https://github.com/pypa/sampleproject/blob/main/pyproject.toml
+[project]
+name = "pushover-bash"
+version = "1.0.3"
+description = "A Bash shell script to send pushover notifications.
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["bash", "pushover", "notifications"]
+authors = [
+  "akusei",
+  "Brian French <fr3nch13@gmail.com>"
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Software Development",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+[project.urls]
+"Homepage" = "https://github.com/fr3nch13/pushover-bash"
+"Bug Reports" = "https://github.com/fr3nch13/pushover-bash/issues"
+
+[build-system]
