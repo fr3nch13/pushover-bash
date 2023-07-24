@@ -1,3 +1,7 @@
+[![CI Bash](https://github.com/fr3nch13/pushover-bash/actions/workflows/bash.yml/badge.svg)](https://github.com/fr3nch13/pushover-bash/actions/workflows/bash.yml)
+[![CI Composer](https://github.com/fr3nch13/pushover-bash/actions/workflows/composer.yml/badge.svg)](https://github.com/fr3nch13/pushover-bash/actions/workflows/composer.yml)
+[![CI NPM](https://github.com/fr3nch13/pushover-bash/actions/workflows/npm.yml/badge.svg)](https://github.com/fr3nch13/pushover-bash/actions/workflows/npm.yml)
+
 # Pushover Bash Script
 A Bash shell script to send pushover notifications. A [Pushover account](https://pushover.net/) is required to use this script.
 
