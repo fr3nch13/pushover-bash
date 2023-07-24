@@ -13,10 +13,10 @@ permissions:
 
 jobs:
   run_test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        # the Node.js versions to build on
+        # the Node.js versions to test on
         node: [18, 20]
     name: Node - ${{ matrix.node }}
     steps:
@@ -47,8 +47,5 @@ jobs:
     - name: Run script via NPM
       run:  npm run pushover-test
 
-    - name: Run script with Args via NPM
-      run: npm run pushover -- -p -2 -m Node Test Args ${{ matrix.node }}
-
-    - name: Run via the bin setting
-      run: npm exec pushover-bash -- -p -2 -m Node Test Args ${{ matrix.node }}
+    - name: Run via the bin setting, priority 1
+      run: npm exec pushover-bash -- -m Node Test Args ${{ matrix.node }} -p -1

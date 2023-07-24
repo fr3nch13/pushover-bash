@@ -13,10 +13,10 @@ permissions:
 
 jobs:
   run_test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        # the Node.js versions to build on
+        # the PHP versions to test on
         php: ['7.4', '8.0', '8.1', '8.2', 'latest']
     name: PHP - ${{ matrix.php }}
     steps:
@@ -44,5 +44,5 @@ jobs:
     - name: Run script via Composer
       run: composer run-script pushover-test
 
-    - name: Run script with Args via Composer
-      run: composer run-script pushover -- -p -2 -m Composer Test Args ${{ matrix.php }}
+    - name: Run script with Args via Composer, priority  1
+      run: composer run-script pushover -- -m Composer Test Args ${{ matrix.php }} -p -1

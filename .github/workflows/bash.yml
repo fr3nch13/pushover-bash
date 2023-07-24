@@ -14,7 +14,7 @@ permissions:
 jobs:
   run_fail:
     name: Bash - Expect fail
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -25,11 +25,11 @@ jobs:
     - name: Run script expect fail
       #continue-on-error: true
       run: |
-        ./pushover.sh -v -t badtoken -u badkey -d baddevice -T Github Action Fail -m Github Action Fail || (( $? == 2 )) && exit 0 || exit $?
+        ./pushover.sh -v -t badtoken -u badkey -d baddevice -T Github Action Fail -m Github Action Fail || (( $? == 3 )) && exit 0 || exit $?
 
   run_cli:
     name: Bash - Run with Arguments
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -43,7 +43,7 @@ jobs:
 
   run_config:
     name: Bash - Run with Config File
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -61,5 +61,14 @@ jobs:
     - name: Validate with config
       run: ./pushover.sh -v -x -m Github Action Config
     
-    - name: Run script from config
-      run: ./pushover.sh -v -p -2 -m Github Action Config
+    # Eventually move these to a test script.
+    - name: Run script from config, priority 2
+      run: ./pushover.sh -v -m Github Action Config -p -2
+    
+    - name: Run script from config, priority 1
+      run: ./pushover.sh -v -m Github Action Config -p -1
+
+    - name: Run script with bad priority
+      #continue-on-error: true
+      run: |
+        ./pushover.sh -v -m Github Action Bad Priority -p A || (( $? == 4 )) && exit 0 || exit $?
