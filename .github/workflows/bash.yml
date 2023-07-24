@@ -63,4 +63,4 @@ jobs:
       run: ./pushover.sh -v -x -m Github Action Config
     
     - name: Run script from config
-      run: ./pushover.sh -v -p -2 -m Github Action Config
+      run: ./pushover.sh -v -m Github Action Config -p -2
