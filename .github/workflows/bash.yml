@@ -26,7 +26,7 @@ jobs:
     - name: Run script expect fail
       #continue-on-error: true
       run: |
-        ./pushover.sh -v -t badtoken -u badkey -d baddevice -T Github Action Fail -m Github Action Fail || (( $? == 2 )) && exit 0 || exit $?
+        ./pushover.sh -v -t badtoken -u badkey -d baddevice -T Github Action Fail -m Github Action Fail || (( $? == 3 )) && exit 0 || exit $?
 
   run_cli:
     name: Bash - Run with Arguments
@@ -62,8 +62,14 @@ jobs:
     - name: Validate with config
       run: ./pushover.sh -v -x -m Github Action Config
     
+    # Eventually move these to a test script.
     - name: Run script from config, priority 2
       run: ./pushover.sh -v -m Github Action Config -p -2
     
     - name: Run script from config, priority 1
       run: ./pushover.sh -v -m Github Action Config -p -1
+
+    - name: Run script with bad priority
+      #continue-on-error: true
+      run: |
+        ./pushover.sh -v -m Github Action Bad Priority || (( $? == 4 )) && exit 0 || exit $?

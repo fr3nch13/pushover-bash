@@ -205,7 +205,12 @@ do
     if [ ${1:0:1} != '-' ]; then
       # priority
       if [ ${varname} == 'priority' ]; then
-        myargs[${varname}]=$(printf -v int '%d\n' "${1}")
+        pval=$(printf -v int '%d\n' "${1}")
+        if [ $? -ne 0]; then
+          echo "Priority must be an integer. You gave: ${1}"
+          exit 4
+        fi
+        myargs[${varname}]=${pval}
       else
         myargs[${varname}]="${myargs[${varname}]} ${1}"
       fi  
@@ -322,7 +327,7 @@ fi
 
 # the resonse from pushover is a failure when the status is 0
 if echo ${response} | grep -q '"status":0,'; then
-  exit 2
+  exit 3
 fi
 
 exit 0

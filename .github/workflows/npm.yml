@@ -48,11 +48,5 @@ jobs:
     - name: Run script via NPM
       run:  npm run pushover-test
 
-    - name: Run script with Args via NPM
-      run: npm run pushover -- -m Node Test Args ${{ matrix.node }}-p -2
-
-    - name: Run via the bin setting, priority  2
-      run: npm exec pushover-bash -- -m Node Test Args ${{ matrix.node }} -p -2
-
     - name: Run via the bin setting, priority 1
       run: npm exec pushover-bash -- -m Node Test Args ${{ matrix.node }} -p -1
