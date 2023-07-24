@@ -72,4 +72,4 @@ jobs:
     - name: Run script with bad priority
       #continue-on-error: true
       run: |
-        ./pushover.sh -v -m Github Action Bad Priority || (( $? == 4 )) && exit 0 || exit $?
+        ./pushover.sh -v -m Github Action Bad Priority -p A || (( $? == 4 )) && exit 0 || exit $?
